@@ -48,10 +48,24 @@ export function Portfolio({ content }: { content: PortfolioContent }) {
           viewport={{ once: true, margin: "-40px" }}
         >
           {content.items.map(({ src, alt, link }) => {
-            const CardWrapper = link && link.trim() ? Link : "div";
-            const cardProps = link && link.trim()
-              ? { href: link, target: "_blank", rel: "noopener noreferrer" }
-              : {};
+            const hasLink = Boolean(link && link.trim());
+            const cardContent = (
+              <div className="relative overflow-hidden rounded-lg shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md sm:rounded-xl">
+                  <div className="relative aspect-[4/3] w-full min-h-[140px] sm:min-h-[180px]">
+                    <Image
+                      src={src}
+                      alt={alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:opacity-0 sm:group-hover:opacity-100" />
+                  <p className="absolute bottom-0 left-0 right-0 p-3 text-xs font-medium text-white opacity-100 transition-all duration-300 sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:text-sm">
+                    {alt}
+                  </p>
+                </div>
+            );
 
             return (
               <motion.div
@@ -60,26 +74,18 @@ export function Portfolio({ content }: { content: PortfolioContent }) {
                 transition={{ duration: 0.35 }}
                 className="group"
               >
-                <CardWrapper
-                  {...cardProps}
-                  className={link && link.trim() ? "block" : "block cursor-default"}
-                >
-                  <div className="relative overflow-hidden rounded-lg shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md sm:rounded-xl">
-                    <div className="relative aspect-[4/3] w-full min-h-[140px] sm:min-h-[180px]">
-                      <Image
-                        src={src}
-                        alt={alt}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:opacity-0 sm:group-hover:opacity-100" />
-                    <p className="absolute bottom-0 left-0 right-0 p-3 text-xs font-medium text-white opacity-100 transition-all duration-300 sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:text-sm">
-                      {alt}
-                    </p>
-                  </div>
-                </CardWrapper>
+                {hasLink ? (
+                  <Link
+                    href={link!.trim()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    {cardContent}
+                  </Link>
+                ) : (
+                  <div className="block cursor-default">{cardContent}</div>
+                )}
               </motion.div>
             );
           })}

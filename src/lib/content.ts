@@ -18,11 +18,9 @@ export async function getAllSiteContent(): Promise<Partial<SiteContentMap>> {
   const supabase = await createClient();
   const { data, error } = await supabase.from("site_content").select("section, data");
   if (error || !data) return {};
-  return data.reduce(
-    (acc, row) => {
-      acc[row.section as keyof SiteContentMap] = row.data as SiteContentMap[keyof SiteContentMap];
-      return acc;
-    },
-    {} as Partial<SiteContentMap>
-  );
+  const result = {} as Partial<SiteContentMap>;
+  for (const row of data) {
+    (result as Record<string, unknown>)[row.section] = row.data;
+  }
+  return result;
 }

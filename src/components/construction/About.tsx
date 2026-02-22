@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { Users, Award, Heart } from "lucide-react";
 import { motion } from "framer-motion";
+import type { AboutContent } from "@/lib/content-types";
 
-export function About() {
+export function About({ content }: { content: AboutContent }) {
   return (
     <section id="about" className="bg-gray-50/80 py-12 sm:py-16 md:py-20">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-10 px-4 sm:px-[5%] lg:flex-row lg:flex-wrap lg:items-center lg:gap-16">
@@ -19,30 +20,22 @@ export function About() {
             <Users size={22} strokeWidth={1.75} className="sm:w-6 sm:h-6" />
           </div>
           <h2 className="font-heading mb-3 text-2xl font-bold text-gray-800 sm:mb-4 sm:text-3xl md:text-4xl">
-            About Us
+            {content.heading}
           </h2>
-          <p className="mb-3 leading-relaxed text-gray-600 sm:mb-4 sm:text-base text-sm">
-            Neza Construction Ltd is a small, family‑run company based in South
-            London, specialising in residential and light commercial building
-            projects. From bespoke new builds to sympathetic renovations and
-            everything in between, our experienced team offers a complete range
-            of services including groundwork, structural work, roofing,
-            plumbing, electrics and finishing trades.
+          <p className="mb-3 leading-relaxed text-gray-600 sm:mb-4 text-sm sm:text-base">
+            {content.paragraph1}
           </p>
-          <p className="mb-5 leading-relaxed text-gray-600 sm:mb-6 sm:text-base text-sm">
-            Our mission is to deliver craftsmanship of the highest standard
-            while maintaining transparent communication and respect for your
-            home. We pride ourselves on building lasting relationships with
-            clients and bringing their visions to life.
+          <p className="mb-5 leading-relaxed text-gray-600 sm:mb-6 text-sm sm:text-base">
+            {content.paragraph2}
           </p>
           <div className="flex flex-wrap gap-4 sm:gap-6">
             <span className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-gray-700">
               <Award size={18} className="shrink-0 text-orange-500" />
-              Quality craftsmanship
+              {content.badge1}
             </span>
             <span className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-gray-700">
               <Heart size={18} className="shrink-0 text-orange-500" />
-              Client-focused
+              {content.badge2}
             </span>
           </div>
         </motion.div>

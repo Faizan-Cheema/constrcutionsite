@@ -43,19 +43,21 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur-md supports-[padding:env(safe-area-inset-top)]:pt-[env(safe-area-inset-top)]">
-      <nav className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-3 sm:px-[5%] md:py-4">
+      <nav className="mx-auto flex max-w-[1200px] items-center justify-between px-4 sm:px-[5%]">
         <Link
           href="#home"
           className="shrink-0 transition-opacity hover:opacity-90 min-w-0"
           aria-label="Neza Construction – Home"
         >
-          <Image
-            src="/images/logo.png"
-            alt="Neza Construction Logo"
-            width={120}
-            height={48}
-            className="h-9 w-auto max-h-12 object-contain sm:h-10 md:h-12"
-          />
+          <div className="relative h-16 w-48 sm:h-20 sm:w-56 md:h-24 md:w-64">
+            <Image
+              src="/images/logo.png"
+              alt="Neza Construction Logo"
+              fill
+              sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, 256px"
+              className="object-contain object-left"
+            />
+          </div>
         </Link>
 
         <ul className="hidden list-none gap-6 md:flex md:gap-8">

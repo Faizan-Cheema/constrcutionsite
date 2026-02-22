@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import type { HeroContent } from "@/lib/content-types";
 
-export function Hero() {
+export function Hero({ content }: { content: HeroContent }) {
   return (
     <section
       id="home"
@@ -19,9 +20,9 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          Building Your Vision
+          {content.title}
           <br />
-          From the Ground Up
+          {content.titleLine2}
         </motion.h1>
         <motion.p
           className="mb-8 text-base text-white/95 sm:mb-10 sm:text-lg md:mb-10 md:text-xl"
@@ -29,7 +30,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
         >
-          Expert construction & renovation services in Colchester and beyond.
+          {content.subtitle}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -40,7 +41,7 @@ export function Hero() {
             href="#contact"
             className="group inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-lg transition-all hover:bg-orange-600 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] sm:px-6 sm:py-3.5"
           >
-            Request a Quote
+            {content.ctaText}
             <ArrowRight size={18} className="shrink-0 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </motion.div>

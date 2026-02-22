@@ -2,8 +2,9 @@
 
 import { Mail, Phone, Send } from "lucide-react";
 import { motion } from "framer-motion";
+import type { ContactContent } from "@/lib/content-types";
 
-export function Contact() {
+export function Contact({ content }: { content: ContactContent }) {
   return (
     <section id="contact" className="bg-white py-12 sm:py-16 md:py-20">
       <div className="mx-auto max-w-[1200px] px-4 sm:px-[5%]">
@@ -17,12 +18,10 @@ export function Contact() {
             <Mail size={22} strokeWidth={1.75} className="sm:w-6 sm:h-6" />
           </div>
           <h2 className="font-heading text-2xl font-bold text-gray-800 sm:text-3xl md:text-4xl">
-            Get in Touch
+            {content.heading}
           </h2>
           <p className="mx-auto mt-2 max-w-xl text-sm text-gray-600 sm:mt-3 sm:text-base">
-            Ready to start your project? We&apos;d love to hear from you. Fill out the
-            form below or reach out using the details below and we&apos;ll get back to
-            you as soon as possible.
+            {content.introText}
           </p>
         </motion.div>
 
@@ -34,18 +33,18 @@ export function Contact() {
           transition={{ delay: 0.1 }}
         >
           <a
-            href="mailto:Admin@NezaConstruction.Ltd"
+            href={`mailto:${content.email}`}
             className="flex min-h-[44px] items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium text-gray-700 transition-colors hover:text-orange-500 active:bg-gray-100 sm:justify-start sm:py-2"
           >
             <Mail size={20} className="shrink-0 text-orange-500" />
-            <span className="truncate text-center sm:text-left">Admin@NezaConstruction.Ltd</span>
+            <span className="truncate text-center sm:text-left">{content.email}</span>
           </a>
           <a
-            href="tel:07584045630"
+            href={`tel:${content.phone.replace(/\s/g, "")}`}
             className="flex min-h-[44px] items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium text-gray-700 transition-colors hover:text-orange-500 active:bg-gray-100 sm:justify-start sm:py-2"
           >
             <Phone size={20} className="shrink-0 text-orange-500" />
-            07584045630
+            {content.phone}
           </a>
         </motion.div>
 

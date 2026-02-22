@@ -17,6 +17,9 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   title: "Neza Construction Ltd",
   description: "Expert construction & renovation services in Colchester and beyond. New builds, extensions, renovations, plumbing, electrics and finishing trades.",
+  icons: {
+    icon: "/images/logo.png",
+  },
 };
 
 export const viewport = {

@@ -48,7 +48,7 @@ export function About({ content }: { content: AboutContent }) {
         >
           <div className="overflow-hidden rounded-xl shadow-md w-full">
             <Image
-              src="/images/livingroom.jpg"
+              src="/images/logo.png"
               alt="Our work – finished living space"
               width={500}
               height={333}
